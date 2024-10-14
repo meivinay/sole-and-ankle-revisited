@@ -6,6 +6,8 @@ import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
 
+import Icon from '../Icon';
+
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 
@@ -30,6 +32,9 @@ const Header = () => {
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <Side />
+        <ShoppingBagIcon id='shopping-bag' />
+        <SearchIcon id='search' />
+        <MenuIcon id="menu" />
       </MainHeader>
 
       <MobileMenu
@@ -46,12 +51,21 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  @media ${props => props.theme.queries.tabletAndDown} {
+    height: 68px;
+  }
+  @media ${props => props.theme.queries.phoneAndDown} {
+    padding-inline: 16px;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
   gap: 48px;
   margin: 0px 48px;
+  @media ${props => props.theme.queries.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
@@ -64,10 +78,29 @@ const NavLink = styled.a`
   text-decoration: none;
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
-
   &:first-of-type {
     color: ${COLORS.secondary};
   }
 `;
 
+const ShoppingBagIcon = styled(Icon)`
+display: none;
+@media ${props => props.theme.queries.tabletAndDown} {
+    margin-right: 34px;
+    display: block;
+  }
+`
+const SearchIcon = styled(Icon)`
+  display: none;
+  margin-right: 32px;
+  @media ${props => props.theme.queries.tabletAndDown} {
+    display: block;
+  }
+`
+const MenuIcon = styled(Icon)`
+  display: none;
+  @media ${props => props.theme.queries.tabletAndDown} {
+    display: block;
+  }
+`
 export default Header;

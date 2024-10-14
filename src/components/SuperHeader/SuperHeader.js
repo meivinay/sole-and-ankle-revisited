@@ -29,9 +29,16 @@ const Wrapper = styled.div`
   font-size: 0.875rem;
   color: ${COLORS.gray[300]};
   background-color: ${COLORS.gray[900]};
-  height: 40px;
+  --height: 40px;
+  height: var(--height);
   padding-left: 32px;
   padding-right: 32px;
+  @media ${props => props.theme.queries.tabletAndDown} {
+    --height: 4px;
+    * {
+      display: none;
+    }
+  }
 `;
 
 const MarketingMessage = styled.span`
